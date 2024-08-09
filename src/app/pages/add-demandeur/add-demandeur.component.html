@@ -1,0 +1,68 @@
+<app-nav></app-nav>
+<div class="container mt-5">
+    <form [formGroup]="demandeurForm" >
+    <fieldset>
+        <legend>Informations personnelles:</legend>
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label >Prenom :</label>
+                <input readonly type="text" class="form-control" name="prenom" formControlName="prenom" [(ngModel)]="user.prenom"  placeholder="prénom">
+            </div>
+            <div class="col-md-4">
+                <label >Nom :</label>
+                <input readonly type="text" class="form-control" name="nom" formControlName="nom" [(ngModel)]="user.nom" placeholder="nom">
+            </div>
+            <div class="col-md-4">
+                <label >NIN :</label>
+                <input readonly type="text" class="form-control" name="nin" formControlName="nin" [(ngModel)]="user.nin"  placeholder="nin">
+            </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-4">
+            <label >Date de naissance <span class="obligatoire">*</span> :</label>
+            <input type="date"  [max]="minDate"   class="form-control" name="datedenaissance" formControlName="datedenaissance" [(ngModel)]="demandeurDto.datedenaissance"  placeholder="date de naissance">
+          </div>
+          <div class="col-md-4">
+            <label >Lieu de naissance <span class="obligatoire">*</span> :</label>
+            <input type="text" class="form-control" name="lieudenaissance" formControlName="lieudenaissance" [(ngModel)]="demandeurDto.lieudenaissance"  placeholder="lieu de naissance">
+          </div>
+          <div class="col-md-4">
+            <label >Sexe <span class="obligatoire">*</span> :</label>
+            <select class="form-control" name="sexe" formControlName="sexe" [(ngModel)]="demandeurDto.sexe">
+              <option selected>Choisir</option>
+              <option value="masculin">Masculin</option>
+              <option value="feminin">Féminin</option>
+            </select>
+          </div>
+        </div>
+    </fieldset>
+      <fieldset>
+        <legend>Autres informations:</legend>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label >Adresse <span class="obligatoire">*</span> :</label>
+                <input type="text" class="form-control" name="adresse" formControlName="adresse" [(ngModel)]="demandeurDto.adresse" placeholder="adresse">
+            </div>
+            <div class="col-md-6">
+                <label >Téléphone <span class="obligatoire">*</span> :</label>
+                <input type="text" class="form-control" name="telephone" formControlName="telephone" [(ngModel)]="demandeurDto.telephone" placeholder="téléphone">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label >Fonction <span class="obligatoire">*</span> :</label>
+                <input type="text" class="form-control" name="fonction" formControlName="fonction" [(ngModel)]="demandeurDto.fonction" placeholder="fonction" id="fonction">
+            </div>
+            <div class="col-md-6">
+                <label >scanner cni <span class="obligatoire">*</span> : ( jpeg, jpg, png, pdf )</label>
+                <input type="file" name="file" id="file" accept=".pdf, .jpg, .jpeg, .png" (change)="onImageUpload($event)" class="form-control">
+            </div>
+        </div>
+      </fieldset>
+      <div class="row form-group mb-3">
+        <button type="submit" class="btn btn-success" [disabled]="demandeurForm.invalid" (click)="onCreate()">valider</button>
+        <!--button  class="btn btn-danger">annuler</button-->
+      </div>
+    </form>
+</div>
+<app-footer></app-footer>

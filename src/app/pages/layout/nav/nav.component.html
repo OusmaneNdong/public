@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!--a class="navbar-brand" href="#">Navbar</a-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="row collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="col-12">
+      <div class="header-conntent">
+
+        <div class="senegal-logo">
+          <!-- start logo -->
+          <a href="#">
+            <img class="logo" src="https://fonctionpublique.gouv.sn/IMG/logo/logo-republique-du-senegal.png" alt="logo-republique-du-senegal">
+          </a>
+          <!-- end logo -->
+          <p class="rds">République du Sénégal</p>
+          <p class="pbf"> Un peuple, Un but, Une foi </p>
+
+        </div>
+
+        <div class="navbar-header navbar-header-custom">
+          <!-- start logo -->
+          <a href="#" class="navbar-brand">
+            <img class="logo" src="https://fonctionpublique.gouv.sn/IMG/logo/ministe_re_de_la_fonction_publique_et_de_la_transformation_du_secteur_public.png" alt="Ministère de la Fonction Publique
+
+                                Et de la Réforme du Service public">
+          </a>
+          <!-- end logo -->
+          <p class="text">
+            <a href="#" class="navbar-brand mfpnom">  Ministère de la Fonction Publique <br> Et de la Réforme du Service public
+            </a>
+          </p>
+        </div>
+        <div class="attr-nav align-items-lg-center vac">
+          <ul *ngIf="loIn">
+            <li class="nav-item dropdown">
+              <!--a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a-->
+              <div data-toggle="dropdown" aria-expanded="false">
+                {{fullName}}
+                <img src="https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg" class="rounded-circle" alt="Black and White Portrait of a Man" loading="lazy" />
+              </div>
+
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" [routerLink]="['/change-password']">Changer mot de passe</a>
+                <a class="dropdown-item" *ngIf="!isAdmin" [routerLink]="['/update-demandeur']">Modifier profil</a>
+                <a class="dropdown-item" *ngIf="!isAdmin" (click)="listDemande()">Mes demande</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="javasript:void(0)" (click)="onlogout()">Se deconnecter</a>
+              </div>
+            </li>
+          </ul>
+          <button *ngIf="!loIn" class="btn btn-success" [routerLink]="['/connexion']">Se connecter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="row justify-content-center banner">
+  <div class="col-12">PLATEFORME DE DEMANDE D'ATTESTATION DE NON APPARTENENCE A LA FONCTION PUBLIQUE</div>
+</div>

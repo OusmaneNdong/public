@@ -1,0 +1,271 @@
+/* tslint:disable */
+/* eslint-disable */
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
+
+import { DemandeDto } from '../models/demande-dto';
+import { demander } from '../fn/demande/demander';
+import { Demander$Params } from '../fn/demande/demander';
+import { eligible } from '../fn/demande/eligible';
+import { Eligible$Params } from '../fn/demande/eligible';
+import { findAll2 } from '../fn/demande/find-all-2';
+import { FindAll2$Params } from '../fn/demande/find-all-2';
+import { findAllDemande } from '../fn/demande/find-all-demande';
+import { FindAllDemande$Params } from '../fn/demande/find-all-demande';
+import { findAttestationName } from '../fn/demande/find-attestation-name';
+import { FindAttestationName$Params } from '../fn/demande/find-attestation-name';
+import { findByDemandeurId } from '../fn/demande/find-by-demandeur-id';
+import { FindByDemandeurId$Params } from '../fn/demande/find-by-demandeur-id';
+import { getAllDemande } from '../fn/demande/get-all-demande';
+import { GetAllDemande$Params } from '../fn/demande/get-all-demande';
+import { getById2 } from '../fn/demande/get-by-id-2';
+import { GetById2$Params } from '../fn/demande/get-by-id-2';
+import { parstatut } from '../fn/demande/parstatut';
+import { Parstatut$Params } from '../fn/demande/parstatut';
+
+@Injectable({ providedIn: 'root' })
+export class DemandeService extends BaseService {
+  constructor(config: ApiConfiguration, http: HttpClient) {
+    super(config, http);
+  }
+
+  /** Path part for operation `demander()` */
+  static readonly DemanderPath = '/api/demande/demandez/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `demander()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  demander$Response(params: Demander$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return demander(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `demander$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  demander(params: Demander$Params, context?: HttpContext): Observable<number> {
+    return this.demander$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `getAllDemande()` */
+  static readonly GetAllDemandePath = '/api/demande';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllDemande()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllDemande$Response(params?: GetAllDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDto>>> {
+    return getAllDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllDemande$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllDemande(params?: GetAllDemande$Params, context?: HttpContext): Observable<Array<DemandeDto>> {
+    return this.getAllDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDto>>): Array<DemandeDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `parstatut()` */
+  static readonly ParstatutPath = '/api/demande/parstatut';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `parstatut()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  parstatut$Response(params?: Parstatut$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+[key: string]: number;
+}>> {
+    return parstatut(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `parstatut$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  parstatut(params?: Parstatut$Params, context?: HttpContext): Observable<{
+[key: string]: number;
+}> {
+    return this.parstatut$Response(params, context).pipe(
+      map((r: StrictHttpResponse<{
+[key: string]: number;
+}>): {
+[key: string]: number;
+} => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllDemande()` */
+  static readonly FindAllDemandePath = '/api/demande/getStatut/{statut}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllDemande()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllDemande$Response(params: FindAllDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDto>>> {
+    return findAllDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllDemande$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllDemande(params: FindAllDemande$Params, context?: HttpContext): Observable<Array<DemandeDto>> {
+    return this.findAllDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDto>>): Array<DemandeDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `findAll2()` */
+  static readonly FindAll2Path = '/api/demande/getDemande';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAll2()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAll2$Response(params?: FindAll2$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDto>>> {
+    return findAll2(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAll2$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAll2(params?: FindAll2$Params, context?: HttpContext): Observable<Array<DemandeDto>> {
+    return this.findAll2$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDto>>): Array<DemandeDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `findByDemandeurId()` */
+  static readonly FindByDemandeurIdPath = '/api/demande/findDemandeurById/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findByDemandeurId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findByDemandeurId$Response(params: FindByDemandeurId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDto>>> {
+    return findByDemandeurId(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findByDemandeurId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findByDemandeurId(params: FindByDemandeurId$Params, context?: HttpContext): Observable<Array<DemandeDto>> {
+    return this.findByDemandeurId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDto>>): Array<DemandeDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `eligible()` */
+  static readonly EligiblePath = '/api/demande/eligible/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `eligible()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  eligible$Response(params: Eligible$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+    return eligible(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `eligible$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  eligible(params: Eligible$Params, context?: HttpContext): Observable<boolean> {
+    return this.eligible$Response(params, context).pipe(
+      map((r: StrictHttpResponse<boolean>): boolean => r.body)
+    );
+  }
+
+  /** Path part for operation `getById2()` */
+  static readonly GetById2Path = '/api/demande/demandeDetails/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getById2()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getById2$Response(params: GetById2$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDto>> {
+    return getById2(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getById2$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getById2(params: GetById2$Params, context?: HttpContext): Observable<DemandeDto> {
+    return this.getById2$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDto>): DemandeDto => r.body)
+    );
+  }
+
+  /** Path part for operation `findAttestationName()` */
+  static readonly FindAttestationNamePath = '/api/demande/attestation/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAttestationName()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAttestationName$Response(params: FindAttestationName$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return findAttestationName(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAttestationName$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAttestationName(params: FindAttestationName$Params, context?: HttpContext): Observable<string> {
+    return this.findAttestationName$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+}

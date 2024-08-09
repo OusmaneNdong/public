@@ -1,0 +1,101 @@
+<app-nav></app-nav>
+<div class="container">
+  <form>
+    <fieldset>
+      <legend>Informations personnelles:</legend>
+      <div class="row form-group">
+        <div class="col-md-4">
+          <label >NIN <span class="obligatoire">*</span> :</label>
+          <input readonly type="text" class="form-control" name="nin" [(ngModel)]="currentDemandeur.nin"  placeholder="nin">
+        </div>
+        <div class="col-md-4">
+          <label >Prenom <span class="obligatoire">*</span> :</label>
+          <input type="text" class="form-control" name="prenom"  [(ngModel)]="currentDemandeur.prenom"  placeholder="prénom">
+        </div>
+        <div class="col-md-4">
+          <label >Nom <span class="obligatoire">*</span> :</label>
+          <input type="text" class="form-control" name="nom"  [(ngModel)]="currentDemandeur.nom" placeholder="nom">
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-4">
+          <label >Date de naissance <span class="obligatoire">*</span> :</label>
+          <input type="text" class="form-control" name="datedenaissance" [(ngModel)]="currentDemandeur.datedenaissance"  placeholder="date de naissance">
+        </div>
+        <div class="col-md-4">
+          <label >Lieu de naissance <span class="obligatoire">*</span> :</label>
+          <input type="text" class="form-control" name="lieudenaissance" [(ngModel)]="currentDemandeur.lieudenaissance"  placeholder="lieu de naissance">
+        </div>
+        <div class="col-md-4">
+          <label >Sexe <span class="obligatoire">*</span> :</label>
+          <select class="form-control" name="sexe"  [(ngModel)]="currentDemandeur.sexe">
+            <option >Choisir</option>
+            <option value="masculin">Masculin</option>
+            <option value="feminin">Féminin</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Autres informations:</legend>
+      <div class="row form-group">
+        <div class="col-md-6 col-sm-12">
+          <div class="row form-group">
+            <div class="col-12">
+              <label >Adresse <span class="obligatoire">*</span> :</label>
+              <input type="text" class="form-control" name="adresse"  [(ngModel)]="currentDemandeur.adresse" placeholder="adresse">
+            </div>
+            <div class="col-12">
+              <label >Téléphone <span class="obligatoire">*</span> :</label>
+              <input type="text" class="form-control" name="telephone"  [(ngModel)]="currentDemandeur.telephone" placeholder="téléphone">
+            </div>
+            <div class="col-12"><label >Fonction <span class="obligatoire">*</span> :</label>
+              <input type="text" class="form-control" name="fonction"  [(ngModel)]="currentDemandeur.fonction" placeholder="fonction" id="fonction" ></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="row">
+            <div class="col">
+              <label >scanner cni : ( jpeg, jpg, png, pdf )</label>
+              <input type="file" id="file" accept=".pdf, .jpg, .jpeg, .png" size="4MB" (change)="onImageUpload($event)" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="office-viewer">
+                <iframe [src]='urlSafe' width='100%' height='auto'></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--div class="row form-group">
+        <div class="col-md-6">
+          <label >Adresse :</label>
+          <input type="text" class="form-control" name="adresse"  [(ngModel)]="currentDemandeur.adresse" placeholder="adresse">
+        </div>
+        <div class="col-md-6">
+          <label >Téléphone :</label>
+          <input type="text" class="form-control" name="telephone"  [(ngModel)]="currentDemandeur.telephone" placeholder="téléphone">
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-6">
+          <label >Fonction :</label>
+          <input type="text" class="form-control" name="fonction"  [(ngModel)]="currentDemandeur.fonction" placeholder="fonction">
+        </div>
+        <div class="col-md-6">
+          <label >scanner cni :</label>
+          <input type="file" class="form-control" placeholder="choisir fichier">
+        </div>
+      </div-->
+    </fieldset>
+    <fieldset>
+      <div class="row form-group mb-3">
+        <button type="submit" class="btn btn-success" (click)="onUpdate()">valider</button>
+        <button class="btn btn-danger">annuler</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<app-footer></app-footer>

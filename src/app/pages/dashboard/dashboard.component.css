@@ -1,0 +1,18 @@
+.no-wrap{
+  flex-wrap: nowrap;
+}
+
+app-card{
+  padding: 5px;
+  margin: 0px;
+}
+app-card > div {
+  padding-top: 10px;
+}
+.row > div{
+  padding: 0px;
+}
+
+.lg-section{
+  margin-bottom: 150px;
+}

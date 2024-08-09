@@ -1,0 +1,17 @@
+.icon {
+  text-align: center;
+
+}
+a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.small-box{
+  cursor: pointer;
+  padding: 10px;
+  color: black;
+  font-weight: 700;
+  font-size: 15px;
+}
+

@@ -1,0 +1,76 @@
+<app-nav></app-nav>
+<div class="container">
+
+  <div class="row boutton mt-5">
+    <button class="btn btn-warning" (click)="onBack()">Annuler</button>
+    <button *ngIf="loading==false" class="btn btn-success" (click)="onApproved()">Approuver</button>
+    <div *ngIf="loading==true"    class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!--button class="btn btn-danger" (click)="onRejected()">Rejeter</button-->
+    <div class="dropdown navbar navbar-expand-lg navbar-light bg-light">
+      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Rejeter
+      </button>
+      <div *ngIf="loading==false" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="rejectInternet(currentDemande)">Interne</a>
+        <a class="dropdown-item" (click)="rejectExtern(currentDemande)">Externe</a>
+      </div>
+      <div *ngIf="loading==true"    class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <!--ul class="navbar navbar-expand-lg navbar-light bg-light">
+      <li class="nav-item dropdown">
+
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" >Motif 1</a>
+          <a class="dropdown-item" >Motif 2</a>
+
+        </div>
+      </li>
+    </ul-->
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <tr>
+          <th>Prenom</th>
+          <th>{{currentDemande.demandeurDTO?.prenom}}</th>
+        </tr>
+        <tr>
+          <th>Nom</th>
+          <th>{{currentDemande.demandeurDTO?.nom}}</th>
+        </tr>
+        <tr>
+          <th>Date de naissance</th>
+          <th>{{currentDemande.demandeurDTO?.datedenaissance}}</th>
+        </tr>
+        <tr>
+          <th>Lieu de naissance</th>
+          <th>{{currentDemande.demandeurDTO?.lieudenaissance}}</th>
+        </tr>
+        <tr>
+          <th>Numéro d'identification national</th>
+          <th>{{currentDemande.demandeurDTO?.nin}}</th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <div class="office-viewer">
+        <iframe [src]='urlSafe' width='100%' height='500px'></iframe>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,21 @@
+td > a {
+  cursor: pointer!important;
+}
+
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+}
+
+.colortr{
+  background-color: #a7f5b8 !important;
+}
+
+h3{
+  text-transform: uppercase;
+  text-align: center;
+  padding: 40px;
+  padding-bottom: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
