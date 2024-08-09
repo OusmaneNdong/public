@@ -8,7 +8,6 @@ import {RegisterComponent} from './pages/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpInterceptorService} from "./auth/service/http-interceptor.service";
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NavComponent } from './pages/layout/nav/nav.component';
 import { FooterComponent } from './pages/layout/footer/footer.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
@@ -54,7 +53,6 @@ import {NgxPaginationModule} from "ngx-pagination";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        NgMultiSelectDropDownModule.forRoot(),
         ReactiveFormsModule,
         NgxPaginationModule
 
