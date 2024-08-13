@@ -3,7 +3,7 @@
 export interface RegistrationRequest {
   email: string;
   id?: number;
-  nin?: string;
+  nin: string;
   nom: string;
   passePort?: string;
   password: string;

@@ -109,7 +109,7 @@ export class DashboardComponent implements OnInit {
   onStatut(val: string) {
     if(val==="all"){
       this.titre = "La liste des demandes";
-      this.demandeService.findAll2().subscribe((response:any)=>{
+      this.demandeService.findDemandeActif().subscribe((response:any)=>{
         this.demandes = response;
       })
     }else{

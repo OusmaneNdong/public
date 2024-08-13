@@ -17,6 +17,10 @@
             myForm.controls['nin'].touched" class="text-danger">
               Nin est obligatoire
           </span>
+          <span *ngIf="myForm.controls['nin'].hasError('whitespace')&&
+            myForm.controls['nin'].touched" class="text-danger">
+            espace non autorisé
+          </span>
 
           <div class="form-group">
             <label>Prénom <span class="obligatoire">*</span> :</label>
@@ -24,6 +28,10 @@
           </div>
           <span *ngIf="myForm.controls['prenom'].hasError('required')&&
              myForm.controls['prenom'].touched" class="text-danger">Prenom est obligatoire
+          </span>
+          <span *ngIf="myForm.controls['prenom'].hasError('whitespace')&&
+            myForm.controls['prenom'].touched" class="text-danger">
+            espace non autorisé
           </span>
 
           <div class="form-group">
@@ -33,6 +41,10 @@
           <span *ngIf="myForm.controls['nom'].hasError('required')&&
             myForm.controls['nom'].touched" class="text-danger">
             nom est obligatoire
+          </span>
+          <span *ngIf="myForm.controls['nom'].hasError('whitespace')&&
+            myForm.controls['nom'].touched" class="text-danger">
+            espace non autorisé
           </span>
 
           <div class="form-group">
@@ -88,7 +100,7 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
-          <div class="row justify-content-md-center gap">
+          <div class="row justify-content-md-center gap sm">
             <button type="button" [disabled]="myForm.invalid" class="btn btn-success" (click)="onRegister()" >S'insrire</button>
             <button type="button" class="btn btn-danger" routerLink="/connexion" >Annuler</button>
           </div>

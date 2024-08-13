@@ -1,38 +1,87 @@
 <app-nav></app-nav>
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div *ngIf="!visible" class="alert alert-danger" role="alert">
+    <div *ngIf="!visible" class="alert alert-danger" id="banner" role="alert">
       Vous avez une attestation en cours de validé ou une demande en cours.
-    </div>
-    <div class="col-md-12">
-      <h3>Liste de mes demandes</h3>
     </div>
   </div>
   <div class="row justify-content-end">
-    <button [disabled]="!visible" class="btn btn-success mb-3" (click)="onMakeDemande($event)" title="Vous avez une demande en cours ou une attestation en cours de validitée">Effectuer une demande</button>
+    <button [disabled]="!visible" class="btn btn-success mb-3" (click)="onMakeDemande($event)" id="btn" title="Vous avez une demande en cours ou une attestation en cours de validitée">Effectuer une demande</button>
   </div>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">Date demande</th>
-      <th scope="col">Téléphone</th>
-      <th scope="col">Etat</th>
-      <th scope="col">Télécharger</th>
-      <th scope="col">Date d'expiration</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr  [ngClass]="demande.statut=='approuvee' ? 'colortr' : '' " *ngFor="let demande of demandes">
-      <th scope="row">{{demande.datedemande}}</th>
-      <td>{{demande.demandeurDTO?.telephone}}</td>
-      <td *ngIf="demande.statut=='cours'">En cours de traitement</td>
-      <td *ngIf="demande.statut=='approuvee'">Demande approuvée</td>
-      <td *ngIf="demande.statut=='rejetee'">Demande rejetée</td>
-      <td><a [ngClass]="demande.statut!='approuvee' ? 'inactiveLink' : '' " [routerLink]="['/visualiser', demande.id]" target="_blank">    <!--button (click)="upload(demande.id)"--><i class="fa fa-eye" aria-hidden="true"></i></a><!--/button--></td>
-      <td>{{demande.dateexpiration}}</td>
-      <!--<a  [routerLink]="'/visualiser/'+demande.id" style="cursor: pointer"></a>visualiser-->
-    </tr>
-    </tbody>
-  </table>
+  <div  *ngIf="da.length>0" class="row">
+    <div class="col-md-12">
+      <h3>Liste de mes demandes approuvées</h3>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Date demande</th>
+          <th scope="col" class="hide-sm">Téléphone</th>
+          <th scope="col" class="hide-sm">Etat</th>
+          <th scope="col">Télécharger</th>
+          <th scope="col">Date d'expiration</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  [ngClass]="demande.statut=='approuvee' ? 'colortr' : '' " *ngFor="let demande of da">
+          <th scope="row">{{demande.datedemande}}</th>
+          <td class="hide-sm">{{demande.demandeurDTO?.telephone}}</td>
+          <td class="hide-sm" *ngIf="demande.statut=='cours'">En cours de traitement</td>
+          <td class="hide-sm" *ngIf="demande.statut=='approuvee'">Demande approuvée</td>
+          <td class="hide-sm" *ngIf="demande.statut=='rejetee'">Demande rejetée</td>
+          <td><a [ngClass]="demande.statut!='approuvee' ? 'inactiveLink' : '' " [routerLink]="['/visualiser', demande.id]" target="_blank">    <!--button (click)="upload(demande.id)"--><i class="fa fa-eye" aria-hidden="true"></i></a><!--/button--></td>
+          <td>{{demande.dateexpiration}}</td>
+          <!--<a  [routerLink]="'/visualiser/'+demande.id" style="cursor: pointer"></a>visualiser-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="dec.length>0" class="row">
+    <h3>Liste de mes demandes en cours de traitement</h3>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Date demande</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col"  class="hide-sm">Etat</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  [ngClass]="demande.statut=='approuvee' ? 'colortr' : '' " *ngFor="let demande of dec">
+        <th scope="row">{{demande.datedemande}}</th>
+        <td>{{demande.demandeurDTO?.telephone}}</td>
+        <td *ngIf="demande.statut=='cours'"  class="hide-sm">En cours de traitement</td>
+        <td *ngIf="demande.statut=='approuvee'"  class="hide-sm">Demande approuvée</td>
+        <td *ngIf="demande.statut=='rejetee'"  class="hide-sm">Demande rejetée</td>
+        <td><a (click)="onDelete(demande.id)"><i class="fa fa-trash"></i></a></td>
+        <!--<a  [routerLink]="'/visualiser/'+demande.id" style="cursor: pointer"></a>visualiser-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="dr.length>0" class="row">
+    <h3>Liste de mes demandes rejetées</h3>
+    <table  class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Date demande</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Etat</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  [ngClass]="demande.statut=='approuvee' ? 'colortr' : '' " *ngFor="let demande of dr">
+        <th scope="row">{{demande.datedemande}}</th>
+        <td>{{demande.demandeurDTO?.telephone}}</td>
+        <td *ngIf="demande.statut=='cours'">En cours de traitement</td>
+        <td *ngIf="demande.statut=='approuvee'">Demande approuvée</td>
+        <td *ngIf="demande.statut=='rejetee'">Demande rejetée</td>
+        <!--<a  [routerLink]="'/visualiser/'+demande.id" style="cursor: pointer"></a>visualiser-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 <app-footer></app-footer>
