@@ -47,6 +47,7 @@ export class VerificationComponent implements OnInit {
     this.loading = true;
     this.attestationService.generate({idUser:Number(localStorage.getItem("userId")),idDemandeur:Number(this.currentDemande.demandeurDTO?.id),idDemande:Number(this.currentDemande.id),idStructure:1}).subscribe({
       next:(data)=>{
+        this.loading = false;
         Swal.fire({
           position: "center",
           icon: "success",
@@ -79,6 +80,7 @@ export class VerificationComponent implements OnInit {
     this.loading = true;
     this.mailServices.sendMailRejectInterne({id: Number(currentDemande.id)}).subscribe({
       next:(data)=>{
+        this.loading = false;
         Swal.fire({
           position: "center",
           icon: "error",
@@ -99,6 +101,7 @@ export class VerificationComponent implements OnInit {
     this.loading = true;
     this.mailServices.sendMailRejectexterne({id: Number(currentDemande.id)}).subscribe({
       next:(data)=>{
+        this.loading = false;
         Swal.fire({
           position: "center",
           icon: "error",
