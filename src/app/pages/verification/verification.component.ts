@@ -21,6 +21,7 @@ export class VerificationComponent implements OnInit {
   urlSafe: any;
 
   loading: boolean = false;
+  loadingReject: boolean = false;
   constructor(
     private ac: ActivatedRoute,
     private demandeService: DemandeService,
@@ -77,7 +78,7 @@ export class VerificationComponent implements OnInit {
   }
 
   rejectInternet(currentDemande: DemandeDto) {
-    this.loading = true;
+    this.loadingReject = true;
     this.mailServices.sendMailRejectInterne({id: Number(currentDemande.id)}).subscribe({
       next:(data)=>{
         this.loading = false;
@@ -98,7 +99,7 @@ export class VerificationComponent implements OnInit {
   }
 
   rejectExtern(currentDemande: DemandeDto) {
-    this.loading = true;
+    this.loadingReject = true;
     this.mailServices.sendMailRejectexterne({id: Number(currentDemande.id)}).subscribe({
       next:(data)=>{
         this.loading = false;

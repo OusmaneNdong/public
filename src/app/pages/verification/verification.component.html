@@ -14,11 +14,11 @@
       <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Rejeter
       </button>
-      <div *ngIf="loading==false" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div *ngIf="loadingReject==false" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" (click)="rejectInternet(currentDemande)">Interne</a>
         <a class="dropdown-item" (click)="rejectExtern(currentDemande)">Externe</a>
       </div>
-      <div *ngIf="loading==true"    class="d-flex justify-content-center">
+      <div *ngIf="loadingReject==true"    class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
           <span class="sr-only">Loading...</span>
         </div>

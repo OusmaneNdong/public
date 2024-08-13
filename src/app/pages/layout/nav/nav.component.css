@@ -108,6 +108,10 @@ app-footer{
 
 }
 
+#navbarSupportedContent > col-12{
+  padding: 0px;
+}
+
 @media screen and (max-width: 768px) {
   .navbar-brand {
     margin-bottom: 0px;

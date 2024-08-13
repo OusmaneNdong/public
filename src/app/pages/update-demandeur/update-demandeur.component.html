@@ -10,29 +10,54 @@
         </div>
         <div class="col-md-4">
           <label >Prenom <span class="obligatoire">*</span> :</label>
-          <input type="text" class="form-control" name="prenom"  [(ngModel)]="currentDemandeur.prenom"  placeholder="prénom">
+          <input type="text" class="form-control" name="prenom" required  [(ngModel)]="currentDemandeur.prenom"  placeholder="prénom" #prenom="ngModel">
+          <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="alert alert-danger">
+            <div *ngIf="prenom.errors?.['required']">
+              Le prénom est obligatoire.
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
           <label >Nom <span class="obligatoire">*</span> :</label>
-          <input type="text" class="form-control" name="nom"  [(ngModel)]="currentDemandeur.nom" placeholder="nom">
+          <input type="text" class="form-control" name="nom" required  [(ngModel)]="currentDemandeur.nom" placeholder="nom" #nom="ngModel">
+          <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert alert-danger">
+            <div *ngIf="nom.errors?.['required']">
+              Le nom est obligatoire.
+            </div>
+          </div>
         </div>
       </div>
       <div class="row form-group">
         <div class="col-md-4">
           <label >Date de naissance <span class="obligatoire">*</span> :</label>
-          <input type="text" class="form-control" name="datedenaissance" [(ngModel)]="currentDemandeur.datedenaissance"  placeholder="date de naissance">
+          <input type="date" class="form-control" name="datedenaissance" required [(ngModel)]="currentDemandeur.datedenaissance"  placeholder="date de naissance" #datenaissance="ngModel">
+          <div *ngIf="datenaissance.invalid && (datenaissance.dirty || datenaissance.touched)" class="alert alert-danger">
+            <div *ngIf="datenaissance.errors?.['required']">
+              La date de naissance est obligatoire.
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
           <label >Lieu de naissance <span class="obligatoire">*</span> :</label>
-          <input type="text" class="form-control" name="lieudenaissance" [(ngModel)]="currentDemandeur.lieudenaissance"  placeholder="lieu de naissance">
+          <input type="text" class="form-control" name="lieudenaissance" required [(ngModel)]="currentDemandeur.lieudenaissance"  placeholder="lieu de naissance" #lieudenaissance="ngModel">
+          <div *ngIf="lieudenaissance.invalid && (lieudenaissance.dirty || lieudenaissance.touched)" class="alert alert-danger">
+            <div *ngIf="lieudenaissance.errors?.['required']">
+              Le lieu de naissance est obligatoire.
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
           <label >Sexe <span class="obligatoire">*</span> :</label>
-          <select class="form-control" name="sexe"  [(ngModel)]="currentDemandeur.sexe">
-            <option >Choisir</option>
+          <select class="form-control" name="sexe" required  [(ngModel)]="currentDemandeur.sexe" #sexe="ngModel">
+            <option value="">Choisir</option>
             <option value="masculin">Masculin</option>
             <option value="feminin">Féminin</option>
           </select>
+          <div *ngIf="sexe.invalid && (sexe.dirty || sexe.touched)" class="alert alert-danger">
+            <div *ngIf="sexe.errors?.['required']">
+              Le sexe est obligatoire.
+            </div>
+          </div>
         </div>
       </div>
     </fieldset>
@@ -43,14 +68,30 @@
           <div class="row form-group">
             <div class="col-12">
               <label >Adresse <span class="obligatoire">*</span> :</label>
-              <input type="text" class="form-control" name="adresse"  [(ngModel)]="currentDemandeur.adresse" placeholder="adresse">
+              <input type="text" class="form-control" name="adresse"  required [(ngModel)]="currentDemandeur.adresse" placeholder="adresse" #adresse="ngModel">
+              <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)" class="alert alert-danger">
+                <div *ngIf="adresse.errors?.['required']">
+                  L'adresse est obligatoire.
+                </div>
+              </div>
             </div>
             <div class="col-12">
               <label >Téléphone <span class="obligatoire">*</span> :</label>
-              <input type="text" class="form-control" name="telephone"  [(ngModel)]="currentDemandeur.telephone" placeholder="téléphone">
+              <input type="text" class="form-control" name="telephone"  required [(ngModel)]="currentDemandeur.telephone" placeholder="téléphone" #telephone="ngModel">
+              <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="alert alert-danger">
+                <div *ngIf="telephone.errors?.['required']">
+                  Le téléphone est obligatoire.
+                </div>
+              </div>
             </div>
             <div class="col-12"><label >Fonction <span class="obligatoire">*</span> :</label>
-              <input type="text" class="form-control" name="fonction"  [(ngModel)]="currentDemandeur.fonction" placeholder="fonction" id="fonction" ></div>
+              <input type="text" class="form-control" name="fonction"  required [(ngModel)]="currentDemandeur.fonction" placeholder="fonction" id="fonction" #fonction="ngModel">
+              <div *ngIf="fonction.invalid && (fonction.dirty || fonction.touched)" class="alert alert-danger">
+                <div *ngIf="fonction.errors?.['required']">
+                  La fonction est obligatoire.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -91,7 +132,7 @@
       </div-->
     </fieldset>
     <fieldset>
-      <div class="row form-group mb-3">
+      <div class="row form-group mb-3 gap">
         <button type="submit" class="btn btn-success" (click)="onUpdate()">valider</button>
         <button class="btn btn-danger">annuler</button>
       </div>

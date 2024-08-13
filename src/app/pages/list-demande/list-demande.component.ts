@@ -21,6 +21,9 @@ export class ListDemandeComponent implements OnInit {
   filenames: string[] = [];
   id!: number;
 
+  dec!: DemandeDto[];
+  dr!: DemandeDto[];
+  da!: DemandeDto[];
 
   visible!: boolean;
   url!: string;
@@ -29,6 +32,7 @@ export class ListDemandeComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.ac.snapshot.params['id'];
     this.getDemandes(this.id);
+    this.getDemandeTab(this.id);
     this.eligible();
   }
 
@@ -36,6 +40,17 @@ export class ListDemandeComponent implements OnInit {
     this.demandeService.findByDemandeurId({"id": id}).subscribe({
       next:(data)=>{
         this.demandes = data;
+      }
+    })
+  }
+
+  getDemandeTab(id:number){
+    this.demandeService.getbyTab({"id": id}).subscribe({
+      next:(data)=>{
+        this.dec = data["DEC"];
+        this.da = data["DA"];
+        this.dr = data["DR"];
+        //console.log(this.da)
       }
     })
   }
@@ -81,6 +96,10 @@ export class ListDemandeComponent implements OnInit {
   }
 
   onMakeDemande(event: any) {
+    //const label = document.getElementById('banner') as HTMLDivElement | null
+    //label?.setAttribute('hidden', '')
+    // @ts-ignore
+    //document.getElementById('banner').hidden =false;
     event.target.disabled = true;
     this.demandeService.demander({"id": this.ac.snapshot.params['id']}).subscribe({
       next:(data)=>{
@@ -92,7 +111,9 @@ export class ListDemandeComponent implements OnInit {
           timer: 2000
         })
         this.getDemandes(this.id);
+        this.getDemandeTab(this.ac.snapshot.params['id']);
         this.visible = true;
+
       }
     })
   }
@@ -103,5 +124,26 @@ export class ListDemandeComponent implements OnInit {
         this.visible = data;
       }
     })
+  }
+
+  onDelete(id: number| undefined) {
+    const btn = document.getElementById('btn') as HTMLButtonElement | null
+    btn?.removeAttribute('disabled')
+
+    console.log("ok")
+    this.demandeService.annuler({id: Number(id)}).subscribe({
+      next:(data)=>{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Votre demande est annulée.",
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.visible = true;
+        this.getDemandeTab(this.ac.snapshot.params['id']);
+      }
+    })
+    //this.getDemandeTab(id)
   }
 }

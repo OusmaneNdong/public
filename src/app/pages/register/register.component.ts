@@ -24,11 +24,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.formBuilder.group(
       {
+<<<<<<< HEAD
         prenom : ['', [Validators.required]],
         nom : ['', [Validators.required]], 
         nin : ['', [Validators.required]],
         email : ['', [Validators.required, Validators.email]],
         confirmemail : ['', [Validators.required, Validators.email]],
+=======
+        prenom : ['', [Validators.required, this.noWhiteSpaceValidator]],
+        nom : ['', [Validators.required, this.noWhiteSpaceValidator]],
+        nin : ['', [Validators.required, this.noWhiteSpaceValidator]],
+        email : ['', [Validators.required, Validators.email, , this.noWhiteSpaceValidator]],
+        confirmemail : ['', [Validators.required, Validators.email, this.noWhiteSpaceValidator]],
+>>>>>>> c81069ee18f6183a1decb6e3a87985b0d8ca8976
         password : ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword : ['', [Validators.required]]
       },
@@ -83,6 +91,11 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  noWhiteSpaceValidator(control: AbstractControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true }
+  }
   matchValidator(controlName: string, matchingControlName: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const controlToMatch = control.get(controlName);

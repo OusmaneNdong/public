@@ -9,6 +9,8 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { annuler } from '../fn/demande/annuler';
+import { Annuler$Params } from '../fn/demande/annuler';
 import { DemandeDto } from '../models/demande-dto';
 import { demander } from '../fn/demande/demander';
 import { Demander$Params } from '../fn/demande/demander';
@@ -22,10 +24,14 @@ import { findAttestationName } from '../fn/demande/find-attestation-name';
 import { FindAttestationName$Params } from '../fn/demande/find-attestation-name';
 import { findByDemandeurId } from '../fn/demande/find-by-demandeur-id';
 import { FindByDemandeurId$Params } from '../fn/demande/find-by-demandeur-id';
+import { findDemandeActif } from '../fn/demande/find-demande-actif';
+import { FindDemandeActif$Params } from '../fn/demande/find-demande-actif';
 import { getAllDemande } from '../fn/demande/get-all-demande';
 import { GetAllDemande$Params } from '../fn/demande/get-all-demande';
 import { getById2 } from '../fn/demande/get-by-id-2';
 import { GetById2$Params } from '../fn/demande/get-by-id-2';
+import { getbyTab } from '../fn/demande/getby-tab';
+import { GetbyTab$Params } from '../fn/demande/getby-tab';
 import { parstatut } from '../fn/demande/parstatut';
 import { Parstatut$Params } from '../fn/demande/parstatut';
 
@@ -218,6 +224,39 @@ export class DemandeService extends BaseService {
     );
   }
 
+  /** Path part for operation `getbyTab()` */
+  static readonly GetbyTabPath = '/api/demande/demandebytab/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getbyTab()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getbyTab$Response(params: GetbyTab$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+[key: string]: Array<DemandeDto>;
+}>> {
+    return getbyTab(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getbyTab$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getbyTab(params: GetbyTab$Params, context?: HttpContext): Observable<{
+[key: string]: Array<DemandeDto>;
+}> {
+    return this.getbyTab$Response(params, context).pipe(
+      map((r: StrictHttpResponse<{
+[key: string]: Array<DemandeDto>;
+}>): {
+[key: string]: Array<DemandeDto>;
+} => r.body)
+    );
+  }
+
   /** Path part for operation `getById2()` */
   static readonly GetById2Path = '/api/demande/demandeDetails/{id}';
 
@@ -243,6 +282,31 @@ export class DemandeService extends BaseService {
     );
   }
 
+  /** Path part for operation `findDemandeActif()` */
+  static readonly FindDemandeActifPath = '/api/demande/demandeActif';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findDemandeActif()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findDemandeActif$Response(params?: FindDemandeActif$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDto>>> {
+    return findDemandeActif(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findDemandeActif$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findDemandeActif(params?: FindDemandeActif$Params, context?: HttpContext): Observable<Array<DemandeDto>> {
+    return this.findDemandeActif$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDto>>): Array<DemandeDto> => r.body)
+    );
+  }
+
   /** Path part for operation `findAttestationName()` */
   static readonly FindAttestationNamePath = '/api/demande/attestation/{id}';
 
@@ -265,6 +329,31 @@ export class DemandeService extends BaseService {
   findAttestationName(params: FindAttestationName$Params, context?: HttpContext): Observable<string> {
     return this.findAttestationName$Response(params, context).pipe(
       map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+  /** Path part for operation `annuler()` */
+  static readonly AnnulerPath = '/api/demande/annuler/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `annuler()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  annuler$Response(params: Annuler$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDto>> {
+    return annuler(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `annuler$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  annuler(params: Annuler$Params, context?: HttpContext): Observable<DemandeDto> {
+    return this.annuler$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDto>): DemandeDto => r.body)
     );
   }
 
