@@ -1,5 +1,6 @@
 <app-nav></app-nav>
 <div class="container mt-5">
+    <h3>Se Connecter</h3>
   <div class="row justify-content-md-center">
     <div class="col-md-6">
         <div  class="alert alert-danger" *ngIf="err==1" >
@@ -7,23 +8,38 @@
         </div>
       <form>
         <div class="form-group">
-          <label >Nom Utilisateur :</label>
-          <input type="text" name="username" [(ngModel)]="user.email"
-                 class="form-control"
+          <label >Nom Utilisateur <span class="obligatoire">*</span> :</label>
+          <input type="text" name="username" required [(ngModel)]="user.email"
+                 class="form-control" #username="ngModel"
                   >
+
+                  <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors?.['required']">
+                      Le nom d'utilisateur est obligatoire.
+                    </div>
+                  </div>
         </div>
         <div class="form-group">
-          <label >Mot de passe :</label>
-          <input type="password" name="password" [(ngModel)]="user.password"
-                  class="form-control">
+          <label >Mot de passe <span class="obligatoire">*</span> :</label>
+          <input type="password" name="password" required [(ngModel)]="user.password"
+                  class="form-control" #password="ngModel">
+                  <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors?.['required']">
+                      Le mot de passe est obligatoire.
+                    </div>
+                  </div>
         </div>
-        <p>Mot de passe oublié? <a routerLink="/reset-password">réinitialiser </a></p>
+        <p>Mot de passe oublié? <a routerLink="/reset-password">Réinitialiser </a></p>
         <div class="row justify-content-md-center gap sm">
-          <button type="button"
-                  class="btn btn-success" (click)="onLoggedin()">Connexion</button>
+          <button *ngIf="loading==false" type="button" class="btn btn-success" (click)="onLoggedin()">Connexion</button>
+          <div *ngIf="loading==true" class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
 
           <button type="button"
-                  class="btn btn-primary" routerLink="/inscription">S'inscrire</button>
+                  class="btn btn-primary" routerLink="/inscription">Inscription</button>
         </div>
       </form>
     </div>

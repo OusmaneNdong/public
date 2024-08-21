@@ -1,3 +1,8 @@
-<div class="office-viewer">
+<div class="office-viewer" *ngIf="valid">
   <iframe [src]='urlSafe' width='100%' height='1000px'></iframe>
+</div>
+<div *ngIf="!valid">
+  <p>
+    Attesttion expirée merci d'éffectuer une nouvelle demande.
+  </p>
 </div>

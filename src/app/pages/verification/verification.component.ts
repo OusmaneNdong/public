@@ -87,7 +87,7 @@ export class VerificationComponent implements OnInit {
           icon: "error",
           title: "Demande rejetée car le demandeur est un agent de l'Etat",
           showConfirmButton: false,
-          timer: 2000
+          timer: 1000
         }).then(() => {
           this.router.navigate(['admin/dashboard']);
         })
@@ -108,7 +108,7 @@ export class VerificationComponent implements OnInit {
           icon: "error",
           title: "Demande rejetée pour non conformité des données",
           showConfirmButton: false,
-          timer: 2000
+          timer: 1000
         }).then(() => {
           this.router.navigate(['admin/dashboard']);
         })

@@ -2,6 +2,9 @@
   <div class="container mt-5">
     <div class="row justify-content-md-center">
       <div class="col-md-6">
+        <div class="alert alert-danger" id="banner" role="alert">
+          Pour la precédure d'inscription, tous les champs sont obligatoires.
+        </div>
         <form [formGroup]="myForm">
           <div  class="alert alert-danger" *ngIf="err">
             <strong>{{err}}</strong>
@@ -95,18 +98,22 @@
               myForm.get('confirmPassword')?.value != myForm.get('password')?.value" class="text-danger"> Le mot de passe confrmé ne correspond pas au mot de passe tapé
             </span>
           </div>
-          <div *ngIf="loading==true"    class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
+          <p>vous avez un compte? <a routerLink="/connexion">se connecter </a></p>
           <div class="row justify-content-md-center gap sm">
-            <button type="button" [disabled]="myForm.invalid" class="btn btn-success" (click)="onRegister()" >S'insrire</button>
+            <button *ngIf="loading==false" type="button" [disabled]="myForm.invalid" class="btn btn-success" (click)="onRegister()" >S'insrire</button>
+            <div *ngIf="loading==true" class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
             <button type="button" class="btn btn-danger" routerLink="/connexion" >Annuler</button>
           </div>
-          <p>vous avez un compte? <a routerLink="/connexion">se connecter </a></p>
+        
         </form>
       </div>
     </div>
   </div>
+
+
+ 
   <app-footer></app-footer>

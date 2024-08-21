@@ -3,3 +3,19 @@
     padding: 0px 0px 0px 15px;
   }
 }
+button{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.container{
+  background-color: #f2f2f2;
+  border-radius: 200px 200px 200px 200px;
+  border: 1px solid rgb(215, 212, 212);
+  background-image: url("src/assets/unnamed.png");
+  background-size: cover;
+ 
+  /* box-shadow: 60px -16px teal; */
+}
+form{
+  padding: 20px;
+}

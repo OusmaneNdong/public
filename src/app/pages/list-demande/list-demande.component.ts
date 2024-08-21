@@ -106,7 +106,7 @@ export class ListDemandeComponent implements OnInit {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Votre demande est pris en charge.",
+          title: "Votre demande est prise en charge...",
           showConfirmButton: false,
           timer: 2000
         })

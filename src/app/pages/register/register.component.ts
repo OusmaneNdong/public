@@ -24,19 +24,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.formBuilder.group(
       {
-<<<<<<< HEAD
-        prenom : ['', [Validators.required]],
-        nom : ['', [Validators.required]], 
-        nin : ['', [Validators.required]],
-        email : ['', [Validators.required, Validators.email]],
-        confirmemail : ['', [Validators.required, Validators.email]],
-=======
+
         prenom : ['', [Validators.required, this.noWhiteSpaceValidator]],
         nom : ['', [Validators.required, this.noWhiteSpaceValidator]],
         nin : ['', [Validators.required, this.noWhiteSpaceValidator]],
         email : ['', [Validators.required, Validators.email, , this.noWhiteSpaceValidator]],
         confirmemail : ['', [Validators.required, Validators.email, this.noWhiteSpaceValidator]],
->>>>>>> c81069ee18f6183a1decb6e3a87985b0d8ca8976
         password : ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword : ['', [Validators.required]]
       },
@@ -47,21 +40,23 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
+    this.loading = true;
     this.auth.registration({body: this.user}).subscribe({
       next:(data)=>{
+        this.loading = false;
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Inscription réussie.",
+          title: "Inscription réussie, veillez vous connecter avec vos identifiants pré-remplis",
           showConfirmButton: false,
-          timer: 1000
+          timer: 2000
         }).then(() => {
           this.router.navigate(['connexion']);
         });
 
       },
       error:(err:any)=>{
-        if (err.error.errorMessage==='EMAIL_EXIST') {
+        if (err.error.errorMessage === 'EMAIL_EXIST') {
           Swal.fire({
             position: "center",
             icon: 'error',

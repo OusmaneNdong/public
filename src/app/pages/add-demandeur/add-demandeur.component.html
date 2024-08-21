@@ -2,8 +2,12 @@
 <div class="container mt-5">
     <form [formGroup]="demandeurForm" >
     <fieldset>
-        <legend>Informations personnelles:</legend>
+        <legend class="l1">Informations personnelles</legend>
         <div class="row form-group">
+          <div class="col-md-4">
+            <label >NIN :</label>
+            <input readonly type="text" class="form-control" name="nin" formControlName="nin" [(ngModel)]="user.nin"  placeholder="nin">
+        </div>
             <div class="col-md-4">
                 <label >Prenom :</label>
                 <input readonly type="text" class="form-control" name="prenom" formControlName="prenom" [(ngModel)]="user.prenom"  placeholder="prénom">
@@ -11,10 +15,6 @@
             <div class="col-md-4">
                 <label >Nom :</label>
                 <input readonly type="text" class="form-control" name="nom" formControlName="nom" [(ngModel)]="user.nom" placeholder="nom">
-            </div>
-            <div class="col-md-4">
-                <label >NIN :</label>
-                <input readonly type="text" class="form-control" name="nin" formControlName="nin" [(ngModel)]="user.nin"  placeholder="nin">
             </div>
         </div>
         <div class="row form-group">
@@ -37,7 +37,7 @@
         </div>
     </fieldset>
       <fieldset>
-        <legend>Autres informations:</legend>
+        <legend class="l2">Autres informations</legend>
         <div class="row form-group">
             <div class="col-md-6">
                 <label >Adresse <span class="obligatoire">*</span> :</label>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-6">
                 <label >Téléphone <span class="obligatoire">*</span> :</label>
-                <input type="text" class="form-control" name="telephone" formControlName="telephone" [(ngModel)]="demandeurDto.telephone" placeholder="téléphone">
+                <input type="text" class="form-control" name="telephone" formControlName="telephone" [(ngModel)]="demandeurDto.telephone" placeholder="_ _   _ _ _  _ _   _ _  _ _">
             </div>
         </div>
         <div class="row form-group">

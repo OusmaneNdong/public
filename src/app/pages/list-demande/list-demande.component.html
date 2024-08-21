@@ -2,7 +2,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div *ngIf="!visible" class="alert alert-danger" id="banner" role="alert">
-      Vous avez une attestation en cours de validé ou une demande en cours.
+      Vous avez une attestation en cours de validé ou une demande en cours, <br> par contre vous ne pouvez pas éffectuer une nouvelle  demande pour le moment.
     </div>
   </div>
   <div class="row justify-content-end">
@@ -54,7 +54,9 @@
         <td *ngIf="demande.statut=='cours'"  class="hide-sm">En cours de traitement</td>
         <td *ngIf="demande.statut=='approuvee'"  class="hide-sm">Demande approuvée</td>
         <td *ngIf="demande.statut=='rejetee'"  class="hide-sm">Demande rejetée</td>
-        <td><a (click)="onDelete(demande.id)"><i class="fa fa-trash"></i></a></td>
+        <!-- <td><a (click)="onDelete(demande.id)"><i class="fa fa-trash"></i></a></td> -->
+        <td><a (click)="onDelete(demande.id)" style="color: red;">supprimée</a></td>
+
         <!--<a  [routerLink]="'/visualiser/'+demande.id" style="cursor: pointer"></a>visualiser-->
       </tr>
       </tbody>

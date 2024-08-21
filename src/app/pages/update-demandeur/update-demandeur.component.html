@@ -110,30 +110,15 @@
           </div>
         </div>
       </div>
-      <!--div class="row form-group">
-        <div class="col-md-6">
-          <label >Adresse :</label>
-          <input type="text" class="form-control" name="adresse"  [(ngModel)]="currentDemandeur.adresse" placeholder="adresse">
-        </div>
-        <div class="col-md-6">
-          <label >Téléphone :</label>
-          <input type="text" class="form-control" name="telephone"  [(ngModel)]="currentDemandeur.telephone" placeholder="téléphone">
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-md-6">
-          <label >Fonction :</label>
-          <input type="text" class="form-control" name="fonction"  [(ngModel)]="currentDemandeur.fonction" placeholder="fonction">
-        </div>
-        <div class="col-md-6">
-          <label >scanner cni :</label>
-          <input type="file" class="form-control" placeholder="choisir fichier">
-        </div>
-      </div-->
     </fieldset>
     <fieldset>
       <div class="row form-group mb-3 gap">
-        <button type="submit" class="btn btn-success" (click)="onUpdate()">valider</button>
+        <button  *ngIf="loading==false" type="submit" class="btn btn-success" (click)="onUpdate()">valider</button>
+        <div *ngIf="loading==true" class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <button class="btn btn-danger">annuler</button>
       </div>
     </fieldset>

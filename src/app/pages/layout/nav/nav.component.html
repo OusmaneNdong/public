@@ -38,8 +38,8 @@
               <!--a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                 Dropdown
               </a-->
-              <div data-toggle="dropdown" aria-expanded="false">
-                {{fullName}}
+              <div data-toggle="dropdown" aria-expanded="false" style="color: green;">
+               {{fullName}}
                 <img src="https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg" class="rounded-circle" alt="Black and White Portrait of a Man" loading="lazy" />
               </div>
 
@@ -47,13 +47,13 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" [routerLink]="['/change-password']">Changer mot de passe</a>
                 <a class="dropdown-item" *ngIf="!isAdmin" [routerLink]="['/update-demandeur']">Modifier profil</a>
-                <a class="dropdown-item" *ngIf="!isAdmin" (click)="listDemande()">Mes demande</a>
+                <a class="dropdown-item" *ngIf="!isAdmin" (click)="listDemande()">Mes demandes</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="javasript:void(0)" (click)="onlogout()">Se deconnecter</a>
+                <a class="dropdown-item" href="javasript:void(0)" (click)="onlogout()" style="color: rgb(242, 96, 96);"><img src="assets/deconnexion.png" height="25px" width="25px">Déconnecter</a>
               </div>
             </li>
           </ul>
-          <button *ngIf="!loIn" class="btn btn-success" [routerLink]="['/connexion']">Se connecter</button>
+          <button *ngIf="!loIn" class="btn btn-success" [routerLink]="['/connexion']"><img src="/assets/connexion.png"  height="20px" width="20px">Connecter</button>
         </div>
       </div>
     </div>

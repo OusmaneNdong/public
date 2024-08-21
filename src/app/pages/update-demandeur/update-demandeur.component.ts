@@ -16,6 +16,7 @@ export class UpdateDemandeurComponent implements OnInit {
 
   currentDemandeur: DemandeurDto = {adresse: "", lieudenaissance: "", sexe: "", telephone: ""}
   urlSafe: any;
+  loading: boolean = false;
 
   myImage!: string;
   uploadedImage!: File;
@@ -36,10 +37,12 @@ export class UpdateDemandeurComponent implements OnInit {
   }
 
   onUpdate() {
+    this.loading = true;
     console.log("image "+this.uploadedImage)
       //console.log(this.currentDemandeur)
       this.demandeurService.updateDemandeur({body: this.currentDemandeur}).subscribe({
         next:(data)=>{
+          this.loading = false;
           if (this.uploadedImage!=undefined){
             console.log("size "+this.uploadedImage.size)
             this.imageService.uploadImageFS(this.uploadedImage,Number(this.currentDemandeur.id)).subscribe({
@@ -57,22 +60,7 @@ export class UpdateDemandeurComponent implements OnInit {
           this.router.navigate(['mes-demandes', this.currentDemandeur.id])
         }
       })
-    /*console.log(this.currentDemandeur)
-    this.demandeurService.updateDemandeur({body: this.currentDemandeur}).subscribe({
-      next:(data)=>{
-        this.imageService.uploadImageFS(this.uploadedImage,Number(this.currentDemandeur.id)).subscribe({
-          next:(response)=>{
-            this.router.navigate(['mes-demandes', this.currentDemandeur.id])
-          },
-          error:(err:any)=>{
-            this.router.navigate(['mes-demandes', this.currentDemandeur.id])
-          }
-        })
-      },
-      error:(err:any)=>{
-        this.router.navigate(['mes-demandes', this.currentDemandeur.id])
-      }
-    })*/
+
   }
 
   onImageUpload($event: Event) {

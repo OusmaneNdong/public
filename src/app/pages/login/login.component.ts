@@ -13,6 +13,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class LoginComponent implements OnInit {
 
+  loading: boolean = false;
+
   user: AuthenticationRequest = {};
   err!:number;
   private message: any;
@@ -23,9 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLoggedin() {
+    this.loading = true;
     console.log(this.user);
     this.auth.authentication({body:this.user}).subscribe({
       next:(data)=>{
+       this.loading = false;
         localStorage.setItem('token', data.token as string);
         this.authService.saveToken(data.token as string)
           const helper = new JwtHelperService();
