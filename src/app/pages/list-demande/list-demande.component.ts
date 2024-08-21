@@ -33,6 +33,8 @@ export class ListDemandeComponent implements OnInit {
     this.id = this.ac.snapshot.params['id'];
     this.getDemandes(this.id);
     this.getDemandeTab(this.id);
+    console.log(this.getDemandeTab(this.id));
+    
     this.eligible();
   }
 

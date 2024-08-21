@@ -30,6 +30,8 @@ import { getAllDemande } from '../fn/demande/get-all-demande';
 import { GetAllDemande$Params } from '../fn/demande/get-all-demande';
 import { getById2 } from '../fn/demande/get-by-id-2';
 import { GetById2$Params } from '../fn/demande/get-by-id-2';
+import { getByQrCode } from '../fn/demande/get-by-qr-code';
+import { GetByQrCode$Params } from '../fn/demande/get-by-qr-code';
 import { getbyTab } from '../fn/demande/getby-tab';
 import { GetbyTab$Params } from '../fn/demande/getby-tab';
 import { parstatut } from '../fn/demande/parstatut';
@@ -88,6 +90,31 @@ export class DemandeService extends BaseService {
   getAllDemande(params?: GetAllDemande$Params, context?: HttpContext): Observable<Array<DemandeDto>> {
     return this.getAllDemande$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<DemandeDto>>): Array<DemandeDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `getByQrCode()` */
+  static readonly GetByQrCodePath = '/api/demande/qrcode/{code}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getByQrCode()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getByQrCode$Response(params: GetByQrCode$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDto>> {
+    return getByQrCode(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getByQrCode$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getByQrCode(params: GetByQrCode$Params, context?: HttpContext): Observable<DemandeDto> {
+    return this.getByQrCode$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDto>): DemandeDto => r.body)
     );
   }
 

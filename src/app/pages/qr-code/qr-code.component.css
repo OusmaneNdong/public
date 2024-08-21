@@ -1,0 +1,16 @@
+.card{
+    margin-top: 140px;
+    margin-left: 40%;
+}
+.card-body{
+    background-color: white;
+}
+img{
+    margin-left: 60px;
+}
+p{
+    color: red;
+}
+a{
+    /* color: skyblue */
+}

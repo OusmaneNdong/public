@@ -26,6 +26,12 @@ export class QrCodeComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.ac.snapshot.params['code'])
     console.log(this.ac.snapshot.params['code'])
+    this.demandeService.getByQrCode({code: this.ac.snapshot.params['code']}).subscribe({
+      next:(data)=>{
+        this.currentDemande = data
+        
+      }
+    })
     this.urlSafe = this.santizer.bypassSecurityTrustResourceUrl(  this.apiUrl.rootUrl +"/api/uploads/loadAttestationByCode/"+this.ac.snapshot.params['code']);
   }
 
