@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   loading: boolean = false;
 
   errMessage: any;
+  siteKey: string = "6Lec8i0qAAAAANuNhPztaDG503ffz16BHQWcaCYY";
 
   constructor(private formBuilder : FormBuilder, private auth: UtilisateurService, private router: Router) { }
 
@@ -31,7 +32,8 @@ export class RegisterComponent implements OnInit {
         email : ['', [Validators.required, Validators.email, , this.noWhiteSpaceValidator]],
         confirmemail : ['', [Validators.required, Validators.email, this.noWhiteSpaceValidator]],
         password : ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword : ['', [Validators.required]]
+        confirmPassword : ['', [Validators.required]],
+        recaptcha : ['', [Validators.required]]
       },
       {
         validators: [this.matchValidator('password', 'confirmPassword'), this.matchValidator('email','confirmemail')]

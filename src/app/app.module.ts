@@ -25,7 +25,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { VisualiserComponent } from './pages/visualiser/visualiser.component';
 import {NgxPaginationModule} from "ngx-pagination";
-
+import {NgxCaptchaModule} from "ngx-captcha";
 
 @NgModule({
     declarations: [
@@ -54,7 +54,9 @@ import {NgxPaginationModule} from "ngx-pagination";
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        NgxCaptchaModule
+
 
     ],
     providers: [

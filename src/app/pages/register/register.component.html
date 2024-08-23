@@ -98,6 +98,11 @@
               myForm.get('confirmPassword')?.value != myForm.get('password')?.value" class="text-danger"> Le mot de passe confrmé ne correspond pas au mot de passe tapé
             </span>
           </div>
+          <ngx-recaptcha2 #captchaElem
+                          [siteKey]="siteKey"
+                          formControlName="recaptcha">
+
+          </ngx-recaptcha2>
           <p>vous avez un compte? <a routerLink="/connexion">se connecter </a></p>
           <div class="row justify-content-md-center gap sm">
             <button *ngIf="loading==false" type="button" [disabled]="myForm.invalid" class="btn btn-success" (click)="onRegister()" >S'insrire</button>
@@ -108,12 +113,11 @@
             </div>
             <button type="button" class="btn btn-danger" routerLink="/connexion" >Annuler</button>
           </div>
-        
         </form>
       </div>
     </div>
   </div>
 
 
- 
+
   <app-footer></app-footer>
