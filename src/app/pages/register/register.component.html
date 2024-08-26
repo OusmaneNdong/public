@@ -6,6 +6,7 @@
           Pour la precédure d'inscription, tous les champs sont obligatoires.
         </div>
         <form [formGroup]="myForm">
+          <h3>S'INSCRIRE</h3>
           <div  class="alert alert-danger" *ngIf="err">
             <strong>{{err}}</strong>
           </div>
@@ -116,7 +117,5 @@
       </div>
     </div>
   </div>
-
-
 
   <app-footer></app-footer>

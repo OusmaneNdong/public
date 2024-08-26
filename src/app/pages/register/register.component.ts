@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+[x: string]: any;
   public user = new User();
   confirmPassword? : string;
   myForm! : FormGroup
@@ -25,7 +26,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.formBuilder.group(
       {
-
         prenom : ['', [Validators.required, this.noWhiteSpaceValidator]],
         nom : ['', [Validators.required, this.noWhiteSpaceValidator]],
         nin : ['', [Validators.required, this.noWhiteSpaceValidator]],
@@ -118,5 +118,9 @@ export class RegisterComponent implements OnInit {
   onPaste(event: ClipboardEvent) {
     event.preventDefault();
   }
+  myFunction() {
+    confirm("Press a button!");
+  }
+ 
 
 }

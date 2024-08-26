@@ -96,13 +96,9 @@ export class ListDemandeComponent implements OnInit {
     this.fileStatus.requestType = requestType;
     this.fileStatus.percent = Math.round(100 * loaded / total);
   }
+  
 
   onMakeDemande(event: any) {
-    //const label = document.getElementById('banner') as HTMLDivElement | null
-    //label?.setAttribute('hidden', '')
-    // @ts-ignore
-    //document.getElementById('banner').hidden =false;
-    event.target.disabled = true;
     this.demandeService.demander({"id": this.ac.snapshot.params['id']}).subscribe({
       next:(data)=>{
         Swal.fire({
@@ -118,6 +114,9 @@ export class ListDemandeComponent implements OnInit {
 
       }
     })
+  }
+  myFunction() {
+    confirm("Souhaitez-vous éffectuer une demande ?");
   }
 
   eligible(){

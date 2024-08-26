@@ -28,6 +28,7 @@
     "date-fns": "^3.6.0",
     "file-saver": "^2.0.5",
     "jquery": "^3.7.1",
+    "lts": "^1.2.0",
     "ng-multiselect-dropdown": "^0.3.7",
     "ng-openapi-gen": "^0.51.0",
     "ngx-captcha": "^9.0.0",

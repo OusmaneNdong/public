@@ -1,18 +1,18 @@
 <app-nav></app-nav>
 <div class="container mt-5">
-    <h3>Se Connecter</h3>
+   
   <div class="row justify-content-md-center">
     <div class="col-md-6">
         <div  class="alert alert-danger" *ngIf="err==1" >
           <strong>login ou mot de passe incorrect</strong>
         </div>
       <form>
+        <h3>Se Connecter</h3>
         <div class="form-group">
           <label >Nom Utilisateur <span class="obligatoire">*</span> :</label>
           <input type="text" name="username" required [(ngModel)]="user.email"
                  class="form-control" #username="ngModel"
                   >
-
                   <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
                     <div *ngIf="username.errors?.['required']">
                       Le nom d'utilisateur est obligatoire.

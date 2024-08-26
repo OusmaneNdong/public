@@ -3,22 +3,22 @@
     padding: 0px 0px 0px 15px;
   }
 }
-.container{
-  background-position: center;
-  background-size: cover;
-  /* border-radius: 300px 300px 300px 300px; */
-  border: 1px solid gray;
-  background-color: #f2f2f2f2;
-  padding: 40px; 
-}
+
 h3{
   font-family: 25px;
   text-transform: uppercase;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   text-align: center;
   font-weight: 600;
 }
 
 button{
   margin-top: 40px;
+}
+
+form{
+  background-color: #f2f2f2f2;
+  border-radius: 25px 25px 25px 25px;
+  padding: 35px;
+  box-shadow: 10px 10px 20px 8px rgba(80, 80, 82, 0.8);
 }
