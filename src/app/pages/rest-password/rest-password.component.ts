@@ -13,15 +13,18 @@ export class RestPasswordComponent implements OnInit {
 
   email: EmailRequest = {}
   err: number | undefined;
+  loading: boolean = false;
   constructor(private auth: UtilisateurService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onReset() {
+    this.loading = true;
     console.log(this.email)
     this.auth.resetPasswordRequest({body: this.email}).subscribe({
       next:(data)=>{
+        this.loading = false;
         Swal.fire({
           position: "center",
           icon: "success",
@@ -42,7 +45,8 @@ export class RestPasswordComponent implements OnInit {
             showConfirmButton: false,
             timer: 6000
           }).then(() => {
-            this.router.navigate(['/connexion']);
+            window.location.reload();
+            // this.router.navigate(['/connexion']);
 
           });
         }

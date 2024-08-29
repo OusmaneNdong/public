@@ -14,4 +14,24 @@ form{
   padding: 60px;
   border-radius: 20px 20px 20px 20px;
   box-shadow: 20px 20px 40px 8px rgba(80, 80, 82, 0.8);
+  border: 1.5rem solid white;
+}
+h3{
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  border: 1px solid rgb(227, 225, 225);
+}
+h5{
+  margin-bottom: 50px;
+  text-align: center;
+  letter-spacing: 4px;
+  font-weight: 900;
+  font-size: 25px;
+  color: #545353;
+
 }

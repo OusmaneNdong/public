@@ -1,9 +1,9 @@
 <app-nav></app-nav>
 <div class="container mt-5">
   <form>
-    <h3>Modification de mes informations</h3>
+    <h5>MODIFICATION INFORMATIONS</h5>
     <fieldset>
-      <legend>Informations personnelles:</legend>
+      <h3>Informations personnelles</h3>
       <div class="row form-group">
         <div class="col-md-4">
           <label >NIN <span class="obligatoire">*</span> :</label>
@@ -63,7 +63,7 @@
       </div>
     </fieldset>
     <fieldset>
-      <legend>Autres informations:</legend>
+      <h3 class="autre">Autres informations</h3>
       <div class="row form-group">
         <div class="col-md-6 col-sm-12">
           <div class="row form-group">
@@ -120,7 +120,7 @@
             <span class="sr-only">Loading...</span>
           </div>
         </div>
-        <button class="btn btn-danger">annuler</button>
+        <button class="btn btn-danger" (click)="annuler()">annuler</button>
       </div>
     </fieldset>
   </form>

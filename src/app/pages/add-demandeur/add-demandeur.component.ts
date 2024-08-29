@@ -24,7 +24,7 @@ export class AddDemandeurComponent implements OnInit {
   uploadedImage!: File;
   isImageUpdated: Boolean=false;
   currentDate = new Date();
-  minDate!: string; //= "2016-08-07";
+  minDate!: string;
 
   maxDate= "2024-08-15";
   constructor( private formBuilder: FormBuilder,
@@ -115,7 +115,6 @@ export class AddDemandeurComponent implements OnInit {
               console.log(err)
             }
           })
-          //this.router.navigate(['mes-demandes', data])
         },
         error:(err:any)=>{
           console.log(err)
@@ -123,34 +122,6 @@ export class AddDemandeurComponent implements OnInit {
       })
     }
 
-    // @ts-ignore
-    /*this.demandeurDto.nin = localStorage.getItem("nin");
-    this.demandeurService.incription({'body':this.demandeurDto}).subscribe({
-      next:(data)=>{
-        console.log(data)
-        this.imageService.uploadImageFS(this.uploadedImage,data).subscribe({
-          next:(response)=>{
-            this.router.navigate(['mes-demandes', data])
-          },
-          error:(err:any)=>{
-            console.log(err)
-          }
-        })
-        //this.router.navigate(['mes-demandes', data])
-      },
-      error:(err:any)=>{
-        console.log(err)
-      }
-    })*/
-    /*console.log(this.uploadedImage)
-    this.imageService.uploadImageFS(this.uploadedImage,2).subscribe({
-      next:(data)=>{
-        console.log(data)
-      },
-      error:(err:any)=>{
-        console.log(err)
-      }
-    })*/
   }
 
   getDemandeur(nin:string){

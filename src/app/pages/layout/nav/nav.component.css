@@ -1,4 +1,3 @@
-
 .img-logo{
   max-height: 70px;
   margin-right: 1rem;
@@ -6,6 +5,7 @@
 .navbar-nav {
   align-items: center;
   justify-content: center;
+  position: fixed;
 }
 p.rds{
   font-size: 8px;
@@ -67,7 +67,6 @@ p.text{
   display:flex;
   justify-content: space-between;
   align-items: center;
-
 }
 .footer-content{
   display: flex;
@@ -75,7 +74,6 @@ p.text{
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-
 }
 .footer-content > img{
   width: 50px;
@@ -84,11 +82,9 @@ p.text{
 .rounded-circle{
   height: 48px;
 }
-
 ul{
   list-style: none;
 }
-
 app-footer{
   position: relative;
   bottom: 0px;
@@ -106,7 +102,6 @@ app-footer{
   border: 1px solid #d1cdcd;
   letter-spacing: 2px;
   margin: 0px;
-
 }
 
 #navbarSupportedContent > col-12{
@@ -144,3 +139,9 @@ app-footer{
     flex-direction:column;
   }
 }
+.blinking-text{
+  color: green;
+  margin-right: 10px;
+  font-weight: 600;
+}
+

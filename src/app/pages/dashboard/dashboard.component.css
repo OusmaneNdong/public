@@ -16,3 +16,15 @@ app-card > div {
 .lg-section{
   margin-bottom: 150px;
 }
+.alert{
+  color: red;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+img{
+  margin-left: 25px;
+  height : 30px;
+  width:30px;
+  color: greenyellow;
+}

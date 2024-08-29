@@ -6,6 +6,7 @@ export interface InfoStatistique{
   nombre?: number;
   slug?: string;
   infoStyle?: 'bg-primary' | 'bg-success' | 'bg-warning' | 'bg-danger' | "bg-info";
+  textcolor?: 'white' | '' | '' | '' |'';
 }
 @Component({
   selector: 'app-card',

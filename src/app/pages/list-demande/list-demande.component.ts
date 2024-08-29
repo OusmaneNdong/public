@@ -107,7 +107,9 @@ export class ListDemandeComponent implements OnInit {
           title: "Votre demande est prise en charge...",
           showConfirmButton: false,
           timer: 2000
-        })
+        }).then(() => {
+          window.location.reload();                
+        });
         this.getDemandes(this.id);
         this.getDemandeTab(this.ac.snapshot.params['id']);
         this.visible = true;
@@ -115,9 +117,7 @@ export class ListDemandeComponent implements OnInit {
       }
     })
   }
-  myFunction() {
-    confirm("Souhaitez-vous éffectuer une demande ?");
-  }
+
 
   eligible(){
     this.demandeService.eligible({id: this.ac.snapshot.params['id']}).subscribe({
@@ -146,5 +146,14 @@ export class ListDemandeComponent implements OnInit {
       }
     })
     //this.getDemandeTab(id)
+  }
+
+  clickMethod(id: number) {
+    const message = "Souhaitez-vous supprimée votre demande en cours de traitement ? "; 
+    if (confirm(message)) {
+      this.onDelete(id);
+    } else {
+      this.router.navigate(['mes-demandes']);
+    }
   }
 }

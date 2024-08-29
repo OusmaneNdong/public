@@ -62,6 +62,9 @@ export class UpdateDemandeurComponent implements OnInit {
       })
 
   }
+  annuler(){
+    this.router.navigate(['mes-demandes', this.currentDemandeur.id])
+  }
 
   onImageUpload($event: Event) {
     // @ts-ignore

@@ -1,8 +1,9 @@
 <app-nav></app-nav>
 <div class="container mt-5">
-    <form [formGroup]="demandeurForm" >
+    <form [formGroup]="demandeurForm">
+      <h5>COMPLETEZ VOS INFORMATIONS</h5>
     <fieldset>
-        <legend class="l1">Informations personnelles</legend>
+        <h3 class="l1">Informations personnelles</h3>
         <div class="row form-group">
           <div class="col-md-4">
             <label >NIN :</label>
@@ -37,7 +38,7 @@
         </div>
     </fieldset>
       <fieldset>
-        <legend class="l2">Autres informations</legend>
+        <h3 class="l2">Autres informations</h3>
         <div class="row form-group">
             <div class="col-md-6">
                 <label >Adresse <span class="obligatoire">*</span> :</label>
@@ -50,7 +51,7 @@
         </div>
         <div class="row form-group">
             <div class="col-md-6">
-                <label >Fonction <span class="obligatoire">*</span> :</label>
+                <label>Fonction <span class="obligatoire">*</span> :</label>
                 <input type="text" class="form-control" name="fonction" formControlName="fonction" [(ngModel)]="demandeurDto.fonction" placeholder="fonction" id="fonction">
             </div>
             <div class="col-md-6">
@@ -61,7 +62,6 @@
       </fieldset>
       <div class="row form-group mb-3">
         <button type="submit" class="btn btn-success" [disabled]="demandeurForm.invalid" (click)="onCreate()">valider</button>
-        <!--button  class="btn btn-danger">annuler</button-->
       </div>
     </form>
 </div>

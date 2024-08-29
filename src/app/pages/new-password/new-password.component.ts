@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 export class NewPasswordComponent implements OnInit {
   err: number | undefined;
   newPassworRequest: TokenPasswordRequest = {};
+  loading: boolean = false;
 
   constructor(private auth: UtilisateurService, private ac: ActivatedRoute, private router: Router) { }
 
@@ -19,10 +20,12 @@ export class NewPasswordComponent implements OnInit {
   }
 
   onChange() {
+    this.loading = true;
     this.newPassworRequest.token = this.ac.snapshot.params['token']
     console.log(this.newPassworRequest)
     this.auth.changePasswordTest({body: this.newPassworRequest}).subscribe({
       next:(data)=>{
+        this.loading = false;
         Swal.fire({
           position: "center",
           icon: "success",

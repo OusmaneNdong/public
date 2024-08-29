@@ -18,7 +18,7 @@
           <th scope="col" class="hide-sm">Téléphone</th>
           <th scope="col" class="hide-sm">Etat</th>
           <th scope="col">Télécharger</th>
-          <th scope="col">Date d'expiration</th>
+          <th scope="col" style="color: red;">Date d'expiration</th>
         </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div *ngIf="dec.length>0" class="row">
-    <h3>Liste de mes demandes en cours de traitement {{dec[0].statut}}</h3>
+    <h3>Liste de  demande en  {{dec[0].statut}} de traitement...</h3>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -55,7 +55,9 @@
         <td *ngIf="demande.statut=='approuvee'"  class="hide-sm">Demande approuvée</td>
         <td *ngIf="demande.statut=='rejetee'"  class="hide-sm">Demande rejetée</td>
         <!-- <td><a (click)="onDelete(demande.id)"><i class="fa fa-trash"></i></a></td> -->
-        <td><a (click)="onDelete(demande.id)" style="color: red;">supprimée</a></td>
+        <!-- <td><a (click)="onDelete(demande.id)" style="color: red;">supprimée</a></td> -->
+        <td><a (click)=" clickMethod(id)" style="color: red;">supprimée</a></td>
+
 
         <!--<a  [routerLink]="'/visualiser/'+demande.id" style="cursor: pointer"></a>visualiser-->
       </tr>

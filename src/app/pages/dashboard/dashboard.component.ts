@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
 
   itemsPerPage: number = 10;
 
+  noDataFound: boolean = false;
+
   constructor(private demandeService: DemandeService, private dashbordService: DashbordService) { }
 
   ngOnInit(): void {
@@ -36,27 +38,14 @@ export class DashboardComponent implements OnInit {
 
   getAllDemande(){
     this.initialize();
-    /*this.demandeService.findAll2().subscribe({
-      next:(data)=>{
-        this.demandes = data;
-        console.log(this.demandes)
-      }
-    })*/
-
     this.demandeService.findAllDemande({statut: 'cours'}).subscribe({
       next:(data)=>{
         this.demandes = data;
       }
     })
-
-
-
   }
 
-
   private async initialize(){
-
-
 
     this.naDemande = await lastValueFrom(
       this.dashbordService.getAppouved()
@@ -80,28 +69,24 @@ export class DashboardComponent implements OnInit {
         nombre: this.ntDemande,
         infoStyle: "bg-info",
         slug: "all"
-
       },
       {
         title: "Demandes en cours",
         nombre: this.neDemande,
         infoStyle: "bg-warning",
         slug: "Cours"
-
       },
       {
         title: "Demandes approuvees",
         nombre: this.naDemande,
         infoStyle: "bg-success",
-        slug: "Approuvée"
-
+        slug: "Approuvée",
       },
       {
         title: "Demandes rejetees",
         nombre: this.nrDemande,
         infoStyle: "bg-danger",
         slug: "Rejetée"
-
       }
     ]
   }
@@ -121,20 +106,27 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  Search(){
-    if(this.name==""){
+  Search() {
+    if (this.name === "") {
       this.ngOnInit();
-    }else{
-      this.demandes=this.demandes.filter(r=>{
+    } else {
+      const filteredDemandes = this.demandes.filter(r => {
         return (
           r.statut?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
           r.demandeurDTO?.prenom?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
           r.demandeurDTO?.nom?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
-          r.demandeurDTO?.telephone.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
-           r.demandeurDTO?.datedenaissance?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
-          r.demandeurDTO?.lieudenaissance.toLocaleLowerCase().includes(this.name.toLocaleLowerCase())
+          r.demandeurDTO?.telephone?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
+          r.demandeurDTO?.datedenaissance?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase()) ||
+          r.demandeurDTO?.lieudenaissance?.toLocaleLowerCase().includes(this.name.toLocaleLowerCase())
         );
-      })
+      });
+      this.demandes = filteredDemandes;
+      this.noDataFound = this.demandes.length === 0;
     }
   }
+
+  refresh(){
+    window.location.reload();
+  }
+
 }

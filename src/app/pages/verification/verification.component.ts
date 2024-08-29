@@ -61,6 +61,7 @@ export class VerificationComponent implements OnInit {
       },
       error:(err:any)=>{
         console.log(err)
+        window.location.reload();  
       }
     })
   }
@@ -73,6 +74,9 @@ export class VerificationComponent implements OnInit {
     this.mailService.rejeted({id: this.ac.snapshot.params['id']}).subscribe({
       next:(data)=>{
         this.router.navigate(['admin/dashboard'])
+      },
+      error:(err:any)=>{
+        window.location.reload();  
       }
     })
   }
@@ -94,6 +98,7 @@ export class VerificationComponent implements OnInit {
       },
       error:(err:any)=>{
         console.log(err);
+        window.location.reload();  
       }
     })
   }
@@ -114,6 +119,7 @@ export class VerificationComponent implements OnInit {
         })
       },
       error:(err:any)=>{
+        window.location.reload();  
         console.log(err);
       }
     })

@@ -5,25 +5,23 @@
         <app-card class="col-lg-3 col-6" *ngFor="let s of statisques" [infoStatistique]="s"
                   (stringChange)="onStatut($event)">
         </app-card>
-        <!--div class="d-flex flex-row justify-content-between card me-5 ms-5 mb-3 p-3">
-          <app-card *ngFor="let s of statisques" [infoStatistique]="s">
-          </app-card>
-        </div-->
-
     </div>
   </section>
 
   <section class="content mt-5 lg-section">
+   
       <div class="row">
         <div class="col-12">
           <div class="card" style="background-color: rgb(241, 240, 240);">
             <div class="card-header">
-              <input class="form-control" style="width: 50%; float: right;" type="search" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="Rechercher" >
+              <input class="form-control" style="width: 50%; float: right;" type="search" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="Rechercher..." >
+              
               <h3 class="card-title">{{titre}}</h3>
             </div>
             <!-- /.card-header -->
             <div class="">
               <table id="" class="table" style="background: none;">
+                
                 <thead>
                 <tr>
                   <th>Prénom et Nom</th>
@@ -33,6 +31,8 @@
                   <th>Action</th>
                 </tr>
                 </thead>
+               
+
                 <tbody>
                 <tr *ngFor="let demande of demandes | paginate: {itemsPerPage: itemsPerPage, currentPage: p} ">
                   <td>{{demande.demandeurDTO?.fullName}}</td>
@@ -41,9 +41,13 @@
                   <td>{{demande.statut}}</td>
                   <td><a [routerLink]="['/verification', demande.id]">voir</a></td>
                 </tr>
-
                 </tbody>
+                
               </table>
+              <div *ngIf="noDataFound" class="alert">
+                Demande non Trouvée 
+               <img (click)="refresh()" src="/assets/recharger (1).png"  alt="">
+              </div>
             </div>
           </div>
         </div>

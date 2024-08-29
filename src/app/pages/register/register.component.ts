@@ -80,7 +80,10 @@ export class RegisterComponent implements OnInit {
             icon: 'error',
             title: 'Inscription',
             text: 'Email et identifiant existe deja',
-          })
+          }).then(() => {
+            this.router.navigate(['inscription']);
+            window.location.reload();                
+          });
         }
         console.log(err.error.validationErrors)
         this.errMessage = err.error.validationErrors
